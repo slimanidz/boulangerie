@@ -1,0 +1,80 @@
+import api from "@/services/api";
+import deepmerge from "deepmerge";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+// import api from "../../services/api";
+// import api from "../services/api";
+const AppContext = createContext();
+const initialState = {
+  session: null,
+};
+
+export const useAppContext = () => useContext(AppContext);
+
+const AppContextProvider = (props) => {
+  const [state, setState] = useState(initialState);
+  const [openModel, setopenmodel] = useState(false);
+
+  const updateState = useCallback(
+    (newState) =>
+      setState((previousState) => deepmerge(previousState, newState)),
+    []
+  );
+  const setSession = useCallback(
+    (jwt) => {
+      if (!jwt) {
+        localStorage.removeItem("session_jwt_boulangerie");
+        updateState({ session: null });
+
+        return;
+      }
+
+      // const { session } = JSON.parse(atob(jwt.split(".")[1]));
+      const { payload: session } = JSON.parse(
+        Buffer.from(jwt.split(".")[1], "base64").toString("utf-8")
+      );
+
+      localStorage.setItem("session_jwt_boulangerie", jwt);
+
+      updateState({ session });
+    },
+    [updateState]
+  );
+
+  useEffect(() => {
+    setSession(localStorage.getItem("session_jwt_boulangerie"));
+  }, [setSession]);
+
+  ///////////////////////////////////////////////
+
+  const [produits, setProduits] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const {
+        data: { result },
+      } = await api.get("/api/produits");
+      setProduits(result);
+    })();
+  }, []);
+  // console.log(state);
+  return (
+    <AppContext.Provider
+      {...props}
+      value={{
+        setSession,
+        state,
+        produits,
+        setProduits,
+        openModel,
+        setopenmodel,
+      }}
+    />
+  );
+};
+export default AppContextProvider;

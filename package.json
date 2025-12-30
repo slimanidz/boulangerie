@@ -9,9 +9,24 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.948.0",
+    "aws-sdk": "^2.1693.0",
+    "axios": "^1.13.2",
+    "classnames": "^2.5.1",
+    "cloudinary": "^2.8.0",
+    "crypto": "^1.0.1",
+    "deepmerge": "^4.3.1",
+    "dotenv": "^17.2.3",
+    "formik": "^2.4.9",
+    "framer-motion": "^12.23.26",
+    "jsonwebtoken": "^9.0.3",
+    "knex": "^3.1.0",
     "next": "16.0.7",
+    "objection": "^3.1.5",
+    "pg": "^8.16.3",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
