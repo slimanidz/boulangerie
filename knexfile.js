@@ -5,7 +5,7 @@ module.exports = {
   // pour vercel connexion:process.env.DB_URL
   // Pour le local il faut mettre tous
 
-  connection: process.env.DB_URL,
+  connection: process.env.POSTGRES_URL,
   // connection: {
   //   user: process.env.DB_USER,
   //   database: process.env.DB_DATABASE,
