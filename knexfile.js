@@ -5,12 +5,12 @@ module.exports = {
   // pour vercel connexion:process.env.DB_URL
   // Pour le local il faut mettre tous
 
-  connection: process.env.POSTGRES_URL,
-  // connection: {
-  //   user: process.env.DB_USER,
-  //   database: process.env.DB_DATABASE,
-  //   password: process.env.DB_PASSWORD,
-  // },
+  // connection: process.env.POSTGRES_URL,
+  connection: {
+    user: process.env.DB_USER,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+  },
 
   migrations: {
     tableName: "knex_migrations",
