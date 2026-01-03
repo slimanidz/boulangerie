@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx knex migrate:latest && next build",
+    "build": "next build",
+    "migrate": "knex migrate:latest",
     "start": "next start",
     "lint": "eslint"
   },
