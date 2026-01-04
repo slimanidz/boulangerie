@@ -13,7 +13,7 @@ exports.up = async (knex) => {
     table.increments("id");
     table.text("name").notNullable();
     table.decimal("price").notNullable();
-    table.text("url").notNullable().unique();
+    table.text("url").notNullable();
     table.text("description");
     table.timestamps(true, true, true);
   });

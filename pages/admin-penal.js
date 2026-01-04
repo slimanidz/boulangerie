@@ -63,7 +63,7 @@ export default function AdminPenal() {
         description: data.get("description"),
         url: form.image,
       });
-
+      console.log(result);
       if (result) {
         alert("produit added");
         // restform();
@@ -73,7 +73,7 @@ export default function AdminPenal() {
       }
     },
 
-    []
+    [form.image]
   );
 
   return (
@@ -105,7 +105,9 @@ export default function AdminPenal() {
           onUpload={(url) => setForm((prev) => ({ ...prev, image: url }))}
         />
 
-        <button type="submit">Enregistrer le produit</button>
+        <button type="submit" disabled={!form.image}>
+          Enregistrer le produit
+        </button>
       </form>
 
       {form.image && (

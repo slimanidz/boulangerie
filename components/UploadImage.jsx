@@ -25,7 +25,7 @@ export default function UploadImage({ onUpload }) {
       });
 
       const data = await res.json();
-      // console.log("API RESPONSE:", data);
+      console.log("API RESPONSE:", data);
 
       if (data.url) onUpload(data.url);
     };
